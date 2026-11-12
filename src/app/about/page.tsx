@@ -84,7 +84,7 @@ export default function AboutPage() {
       <article id={rakhi.slug} aria-labelledby="rakhi-name" className="scroll-mt-24 bg-cream py-12 sm:py-16">
         <div className="container-site">
           <div className="on-dark grid overflow-hidden rounded-[2.5rem] bg-aubergine text-cream lg:grid-cols-[1fr_1.25fr]">
-            <div data-reveal="mask" className={rakhi.portrait ? "aspect-[3/4] max-h-[44rem] lg:self-start" : "min-h-[24rem] lg:min-h-[40rem]"}>
+            <div data-reveal="mask" className={rakhi.portrait ? "aspect-[4/5] max-h-[44rem] lg:self-start" : "min-h-[24rem] lg:min-h-[40rem]"}>
               <Portrait leader={rakhi} sizes="(min-width: 1024px) 45vw, 100vw" className="h-full min-h-[24rem] lg:min-h-[40rem]" />
             </div>
             <div className="p-8 sm:p-12 lg:p-16">

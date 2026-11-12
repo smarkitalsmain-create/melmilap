@@ -9,7 +9,7 @@ import type { FounderNote, Leader } from "./types";
 export const rakhi: Leader = {
   slug: "rakhi-kulshrestha",
   name: "Rakhi Kulshrestha",
-  title: "Founder, Managing Director & Executive Director",
+  title: "Founder & Managing Director",
   role: "founder",
   initials: "RK",
   colour: "mango",
@@ -31,7 +31,7 @@ export const rakhi: Leader = {
     },
   ],
   roleSummary: [
-    "As Founder, Managing Director & Executive Director of Mel Milap Foundation, Rakhi sets the foundation’s direction, shapes its programme priorities and leads key institutional partnerships.",
+    "As Founder & Managing Director of Mel Milap Foundation, Rakhi sets the foundation’s direction, shapes its programme priorities and leads key institutional partnerships.",
     "Her experience working directly with children informs how the foundation approaches education and community support.",
   ],
   responsibilities: [
@@ -40,12 +40,11 @@ export const rakhi: Leader = {
     "Leads key institutional partnerships",
   ],
   portrait: {
-    src: "/people/rakhi-kulshrestha.png",
-    alt: "Portrait of Rakhi Kulshrestha, smiling, wearing a grey and gold silk saree against a grey background.",
-    width: 433,
-    height: 577,
+    src: "/people/rakhi-kulshrestha.jpg",
+    alt: "Portrait of Rakhi Kulshrestha, smiling, wearing a grey and gold silk saree against a charcoal background.",
+    width: 800,
+    height: 1000,
     approved: true,
-    focus: "50% 12%",
   },
 };
 
@@ -71,19 +70,19 @@ export const gopali: Leader = {
   roleSummary: [
     "As Director & Vice President, Operations, Gopali turns the foundation’s priorities into programme plans, coordinates delivery partners and volunteers, and oversees day-to-day execution.",
     "Her advisory experience informs budgeting, campaign planning and how programme resources are tracked.",
-    "In her operating role, she reports to the Managing Director & Executive Director.",
+    "In her operating role, she reports to the Managing Director.",
   ],
   responsibilities: [
     "Turns priorities into programme plans",
     "Coordinates delivery partners and volunteers",
     "Oversees day-to-day execution",
   ],
-  reportsTo: "Managing Director & Executive Director",
+  reportsTo: "Managing Director",
   portrait: {
     src: "/people/gopali-verma.jpg",
-    alt: "Portrait of Gopali Verma, smiling, in a dark blazer against a grey studio background.",
-    width: 1254,
-    height: 1254,
+    alt: "Portrait of Gopali Verma, smiling, in a dark blazer against a charcoal background.",
+    width: 800,
+    height: 1000,
     approved: true,
   },
 };

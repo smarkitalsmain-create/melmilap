@@ -6,6 +6,7 @@ import { gopali, rakhi } from "@/content/leadership";
 import type { ProgrammeUpdate } from "@/content/types";
 import { formatDate } from "@/lib/content";
 import { GatherFinale } from "./gather-finale";
+import { LeaderCard } from "./leader-card";
 
 export function Hero() {
   return (
@@ -54,41 +55,18 @@ export function LeadershipIntro() {
           The people bringing us together
         </h2>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-[1.6fr_1fr] lg:items-end">
-          <article aria-labelledby="home-rakhi" className="grid overflow-hidden rounded-[2rem] bg-aubergine text-cream sm:grid-cols-[0.9fr_1.1fr]">
-            <Portrait leader={rakhi} sizes="(min-width: 1024px) 28vw, (min-width: 640px) 45vw, 100vw" className="aspect-[4/5] sm:aspect-auto sm:min-h-[26rem]" />
-            <div className="on-dark flex flex-col p-7 sm:p-9">
-              <p className="eyebrow text-mango">Founder</p>
-              <h3 id="home-rakhi" className="display-md mt-3">
-                {rakhi.name}
-              </h3>
-              <p className="mt-2 font-semibold text-lilac">{rakhi.title}</p>
-              <p className="mt-5 text-lilac">{rakhi.intro}</p>
-              <ul className="mt-5 space-y-1 text-sm">
-                {rakhi.responsibilities.map((r) => (
-                  <li key={r}>— {r}</li>
-                ))}
-              </ul>
-              <Link href={`/about#${rakhi.slug}`} className="btn btn-mango mt-auto self-start !mt-8">
-                Read Rakhi’s profile <ArrowRight />
-              </Link>
-            </div>
-          </article>
-
-          <article aria-labelledby="home-gopali" className="grid grid-cols-[7rem_1fr] gap-5 rounded-[2rem] border-2 border-aubergine/15 bg-paper p-5 sm:grid-cols-[9rem_1fr] sm:p-6">
-            <Portrait leader={gopali} sizes="9rem" className="aspect-[4/5] rounded-2xl [&_figcaption]:hidden" />
-            <div>
-              <p className="eyebrow text-leaf-ink">Operations</p>
-              <h3 id="home-gopali" className="mt-2 font-display text-2xl font-bold">
-                {gopali.name}
-              </h3>
-              <p className="mt-1 text-sm font-semibold text-plum">{gopali.title}</p>
-              <p className="mt-3 text-[0.95rem] leading-snug">{gopali.responsibilities.join(" · ")}</p>
-              <Link href={`/about#${gopali.slug}`} className="link-inline mt-3 inline-block font-semibold">
-                Gopali’s profile
-              </Link>
-            </div>
-          </article>
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          {[
+            { leader: rakhi, eyebrow: "Founder" },
+            { leader: gopali, eyebrow: "Operations" },
+          ].map(({ leader, eyebrow }) => (
+            <LeaderCard
+              key={leader.slug}
+              leader={leader}
+              eyebrow={eyebrow}
+              portrait={<Portrait leader={leader} sizes="(min-width: 768px) 45vw, 100vw" className="aspect-[4/3] w-full [&_figcaption]:hidden" />}
+            />
+          ))}
         </div>
       </div>
     </section>

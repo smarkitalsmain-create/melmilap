@@ -40,7 +40,7 @@ describe("publication rules", () => {
 
 describe("leadership", () => {
   it("uses the exact approved titles", () => {
-    expect(rakhi.title).toBe("Founder, Managing Director & Executive Director");
+    expect(rakhi.title).toBe("Founder & Managing Director");
     expect(gopali.title).toBe("Director & Vice President, Operations");
   });
 

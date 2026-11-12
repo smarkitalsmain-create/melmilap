@@ -14,7 +14,14 @@ export function Portrait({ leader, className = "", sizes }: { leader: Leader; cl
   if (leader.portrait?.approved) {
     return (
       <div className={`relative overflow-hidden ${className}`}>
-        <Image src={leader.portrait.src} alt={leader.portrait.alt} fill sizes={sizes} className="object-cover" style={{ objectPosition: leader.portrait.focus ?? "50% 30%" }} />
+        <Image
+          src={leader.portrait.src}
+          alt={leader.portrait.alt}
+          fill
+          sizes={sizes}
+          className="object-cover"
+          style={{ objectPosition: leader.portrait.focus ?? "50% 20%" }}
+        />
       </div>
     );
   }

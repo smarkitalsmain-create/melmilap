@@ -65,6 +65,10 @@ Publication rules:
 
 **Analytics** are not installed.
 
+## Leadership portraits
+
+`public/people/` holds matched 800×1000 portraits built by `node scripts/crop-portraits.mjs` from the originals in `assets/people-originals/`. Both use the same 4:5 frame and the same head position and scale, on the same charcoal backdrop (Rakhi's flat grey background is replaced). To add or replace a photo, put the original in `assets/people-originals/`, adjust its head top, chin and centre in the script, and run it.
+
 ## Brand assets
 
 The official logo files are in `public/brand/` (icon, square and round icons, and the horizontal and stacked lockups with reverse versions). The header uses the official mark (`src/components/art/logo.tsx`, the same geometry as `Mel-Milap-icon.svg`) beside the wordmark. The footer uses the horizontal reverse lockup with its background removed. The favicon is the round icon and the Apple touch icon is the square icon.
@@ -99,7 +103,7 @@ The official logo files are in `public/brand/` (icon, square and round icons, an
 
 ## Needed before launch
 
-1. **Portraits.** Both leadership portraits are in place (`public/people/`). Rakhi's photo is only 433×577 px, so it looks soft at full size on About; a higher-resolution original would help.
+1. **Portraits.** Both leadership portraits are in place. Rakhi's original is only 433×577 px, so her portrait is soft at large sizes; a higher-resolution original would help.
 2. **CBSE wording.** Confirm the exact wording of Rakhi's CBSE nomination, then set `confirmed: true`.
 3. **Founder note.** Rakhi needs to review the draft "From the Founder" note in `leadership.ts`, then set `approval: "approved"`.
 4. **Titles and governance.** Confirm the titles against approved governance documents. The October 2026 draft *Incorporation, Governance and Capital Brief* lists Rakhi as Executive Director and **Nidhi Kulshrestha** as the second director, and does not mention Gopali Verma or a "Managing Director" title. The site uses the titles exactly as briefed, but they should match the approved documents before launch.
