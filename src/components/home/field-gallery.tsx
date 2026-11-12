@@ -82,9 +82,9 @@ export function FieldGallery({ photos }: { photos: FieldPhoto[] }) {
                 <p className="eyebrow text-hibiscus-ink">Photographs</p>
                 <h2 id="field-heading" className="display-lg mt-3">In the field</h2>
               </div>
-              <p className="max-w-md text-lg text-plum">Moments from activities across our three focus areas, with who delivered them.</p>
+              <p className="max-w-md text-lg text-plum">Photographs from activities across our focus areas.</p>
             </div>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            <div className={`grid gap-6 sm:grid-cols-2 ${rest.length <= 2 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
               <Tile photo={lead} lead />
               {rest.map((p) => (
                 <Tile key={p.id} photo={p} lead={false} />

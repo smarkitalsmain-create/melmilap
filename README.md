@@ -71,7 +71,7 @@ Publication rules:
 
 **Fundraising milestone.** The homepage strip and the dated update say "₹12.76 lakh raised … over 45 days of operations through 31 October 2026". The reported amount, ₹12,76,343, is stored as `reportedAmountMinor` in `fundraising.ts`. Once it is reconciled, set `reconciled: true` and use the exact figure publicly. `collectedBy` stays null until you confirm which entity or partner collected the funds; no copy names a recipient or implies the money reached Mel Milap's own account. Funds used and programme outcomes show "Published once supporting records are available" until you fill them in.
 
-**In the field.** The gallery shows only photos with `status: "cleared"` and a `file` in `public/field/`. With none cleared, the section is hidden publicly and the paper burst stays on the campaign spotlight; once a photo is cleared, the burst moves to the gallery. In preview mode, held photos appear as labelled placeholders without loading the image. Held photos are deliberately not in the repository, because several show identifiable children.
+**In the field.** The gallery shows only photos with `status: "cleared"` and a `file` in `public/field/`. When no photo is cleared the section is hidden and the paper burst stays on the campaign spotlight; with cleared photos, the burst moves to the gallery. In preview mode, held photos appear as labelled placeholders without loading the image. Held photos are deliberately not in the repository, because several show identifiable children.
 
 To clear a photo: confirm its source, publication permission (including guardians' consent for children, or use a crop that protects their identity), date, place, the organisation that delivered the work and Mel Milap's role. Then add the file to `public/field/`, fill those fields in `photos.ts` and set `status: "cleared"`.
 
@@ -113,15 +113,12 @@ The official logo files are in `public/brand/` (icon, square and round icons, an
 
 ## Needed before launch
 
-**Photos held for attribution or permission** (none are public yet; details in `src/content/photos.ts`):
+**Photos.** Three photos are published in "In the field" at the foundation's request, without per-photo details: the classroom session (phone watermark cropped), the IDBI Bank computer donation and the blanket collage. Their captions stay general until the photographer, date, place, delivering organisation and Mel Milap's role are added in `src/content/photos.ts`.
 
-- **Classroom session** (Redmi phone photo, woman in yellow teaching): confirm whether it shows Rakhi, plus the date, place, organisation and consent. Students under 18 are identifiable.
-- **IDBI Bank computer donation**: the banner names IDBI Bank RPU-Pune and other charities; confirm Mel Milap's or Rakhi's role, the event date and permission.
-- **Rice distribution with register**: looks like professional agency photography; source unknown.
-- **Woman serving a schoolgirl a meal** (612×408): a stock-photo preview size; likely licensed stock, not Mel Milap activity.
-- **Women's group in a shed** (500×333): source unknown, and the activity doesn't match a focus area.
-- **Blanket collage of children**: identifiable children, source unknown. It must not be used as evidence for the Senior Citizen Blanket Drive.
-- **Sent in chat only, so no files were received**: food handout to children (masks), thali plates, community-kitchen cauldrons, two dog-care photos, tutor with a boy, teacher reading on a mat, and a park gathering. Each needs its file, source, date, place, delivering organisation and permission.
+Held (details in `photos.ts`):
+
+- **Likely third-party images:** the woman serving a schoolgirl (612×408, an iStock preview size), the rice distribution with a register (looks like agency photography), and the women's group in a shed (500×333 web copy, no matching focus area). Publish them only if Mel Milap owns them or holds a licence.
+- **Sent in chat only, so no files were received:** food handout to children, thali plates, community-kitchen cauldrons, two dog-care photos, tutor with a boy, teacher reading on a mat, and a park gathering. Put the files in a folder to add them.
 
 **Fundraising details awaiting confirmation:**
 
