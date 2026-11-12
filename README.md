@@ -113,12 +113,13 @@ The official logo files are in `public/brand/` (icon, square and round icons, an
 
 ## Needed before launch
 
-**Photos.** Three photos are published in "In the field" at the foundation's request, without per-photo details: the classroom session (phone watermark cropped), the IDBI Bank computer donation and the blanket collage. Their captions stay general until the photographer, date, place, delivering organisation and Mel Milap's role are added in `src/content/photos.ts`.
+**Photos.** Eight photos are published in "In the field" at the foundation's request, without per-photo details: the classroom session (phone watermark cropped), the IDBI Bank computer donation, the blanket collage, the thali plates, dog feeding, a woman with community dogs, a tutor with a boy, and a park gathering. Captions stay general until the photographer, date, place, delivering organisation and Mel Milap's role are added in `src/content/photos.ts`. Originals are in `~/Downloads/Mel-Milap-Photos`.
 
 Held (details in `photos.ts`):
 
-- **Likely third-party images:** the woman serving a schoolgirl (612×408, an iStock preview size), the rice distribution with a register (looks like agency photography), and the women's group in a shed (500×333 web copy, no matching focus area). Publish them only if Mel Milap owns them or holds a licence.
-- **Sent in chat only, so no files were received:** food handout to children, thali plates, community-kitchen cauldrons, two dog-care photos, tutor with a boy, teacher reading on a mat, and a park gathering. Put the files in a folder to add them.
+- **Likely third-party images:** the woman serving a schoolgirl (612×408, an iStock preview size), the rice distribution with a register (looks like agency photography), the women's group in a shed (500×333 web copy), and the teacher reading on a mat (300×225, the size image search produces). Publish them only if Mel Milap owns them or holds a licence.
+- **Food handout with masks:** dates from around 2020–21, before Mel Milap began operating.
+- **Community-kitchen cauldrons:** no file received yet.
 
 **Fundraising details awaiting confirmation:**
 

@@ -31,13 +31,13 @@ function captionLine(p: FieldPhoto) {
     .join(" ");
 }
 
-function Tile({ photo, lead }: { photo: FieldPhoto; lead: boolean }) {
+function Tile({ photo, lead, span = "" }: { photo: FieldPhoto; lead: boolean; span?: string }) {
   const cleared = photo.status === "cleared" && photo.file;
   return (
-    <figure className={`group flex flex-col ${lead ? "sm:col-span-2 lg:row-span-2" : ""}`}>
+    <figure className={`group flex flex-col ${lead ? "sm:col-span-2 lg:row-span-2" : span}`}>
       <div
         data-reveal="mask"
-        className={`relative overflow-hidden rounded-[1.75rem] ${lead ? "aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-[28rem]" : "aspect-[4/3]"} ${cleared ? "bg-paper" : "border-2 border-dashed border-cobalt bg-white"}`}
+        className={`relative overflow-hidden rounded-[1.75rem] ${lead ? "aspect-[4/3] lg:aspect-auto lg:flex-1 lg:min-h-[28rem]" : span ? "aspect-[4/3] sm:aspect-[16/9]" : "aspect-[4/3]"} ${cleared ? "bg-paper" : "border-2 border-dashed border-cobalt bg-white"}`}
       >
         {cleared ? (
           <Image
@@ -69,9 +69,11 @@ function Tile({ photo, lead }: { photo: FieldPhoto; lead: boolean }) {
 /** "In the field": lead image plus supporting tiles, revealed by the paper burst. */
 export function FieldGallery({ photos }: { photos: FieldPhoto[] }) {
   if (photos.length === 0) return null;
-  // Wider, larger originals lead; small originals stay as tiles to keep quality.
-  const ordered = [...photos].sort((a, b) => (b.width ?? 0) - (a.width ?? 0));
-  const [lead, ...rest] = ordered;
+  // The widest original leads; smaller originals stay as tiles (in register order, mixing causes) to keep quality.
+  const lead = photos.reduce((a, b) => ((b.width ?? 0) > (a.width ?? 0) ? b : a));
+  const rest = photos.filter((p) => p !== lead);
+  // Widen the last tile when it would otherwise leave a gap in the grid.
+  const lastSpan = [rest.length % 2 === 1 ? "sm:col-span-2" : "", rest.length % 4 === 3 ? "lg:col-span-2" : "lg:col-span-1"].join(" ");
   return (
     <section aria-labelledby="field-heading" className="grain overflow-hidden bg-cream py-20 lg:py-28">
       <div className="container-site">
@@ -86,8 +88,8 @@ export function FieldGallery({ photos }: { photos: FieldPhoto[] }) {
             </div>
             <div className={`grid gap-6 sm:grid-cols-2 ${rest.length <= 2 ? "lg:grid-cols-3" : "lg:grid-cols-4"}`}>
               <Tile photo={lead} lead />
-              {rest.map((p) => (
-                <Tile key={p.id} photo={p} lead={false} />
+              {rest.map((p, i) => (
+                <Tile key={p.id} photo={p} lead={false} span={i === rest.length - 1 ? lastSpan : ""} />
               ))}
             </div>
           </div>
