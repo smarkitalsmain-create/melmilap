@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Logo } from "@/components/art/logo";
 import { contact, footerNav, legalNav, site, socialLinks } from "@/content/site";
 
 export function SiteFooter() {
@@ -8,8 +8,16 @@ export function SiteFooter() {
     <footer className="on-dark grain overflow-hidden bg-aubergine text-cream">
       <div className="container-site grid gap-12 pb-10 pt-16 lg:grid-cols-[1.2fr_2fr] lg:pt-24">
         <div className="space-y-5">
-          <Link href="/" className="group inline-block rounded-lg" aria-label="Mel Milap Foundation home">
-            <Logo tone="light" />
+          <Link href="/" className="inline-block rounded-lg">
+            {/* Official lockup; it carries the "A Smarkitals Group Initiative" endorsement line. */}
+            <Image
+              src="/brand/Mel-Milap-Foundation-logo-horizontal-reverse-transparent.svg"
+              alt={`${site.name} home. ${site.endorsement}`}
+              width={379}
+              height={128}
+              unoptimized
+              className="h-auto w-[17rem] sm:w-[19rem]"
+            />
           </Link>
           <p className="max-w-sm text-lilac">{site.description}</p>
           {contact.email && (
@@ -51,8 +59,6 @@ export function SiteFooter() {
       <div className="container-site flex flex-col gap-4 border-t border-cream/15 py-6 text-sm text-lilac sm:flex-row sm:items-center sm:justify-between">
         <p>
           © {year} {site.name}
-          <span aria-hidden="true" className="mx-2">·</span>
-          <span className="text-[0.8rem] tracking-wide">{site.endorsement}</span>
         </p>
         <ul className="flex flex-wrap gap-x-5 gap-y-2">
           {legalNav.map((item) => (

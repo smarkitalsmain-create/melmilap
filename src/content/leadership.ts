@@ -39,7 +39,14 @@ export const rakhi: Leader = {
     "Shapes programme priorities",
     "Leads key institutional partnerships",
   ],
-  portrait: null,
+  portrait: {
+    src: "/people/rakhi-kulshrestha.png",
+    alt: "Portrait of Rakhi Kulshrestha, smiling, wearing a grey and gold silk saree against a grey background.",
+    width: 433,
+    height: 577,
+    approved: true,
+    focus: "50% 12%",
+  },
 };
 
 export const gopali: Leader = {

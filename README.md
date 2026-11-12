@@ -65,6 +65,10 @@ Publication rules:
 
 **Analytics** are not installed.
 
+## Brand assets
+
+The official logo files are in `public/brand/` (icon, square and round icons, and the horizontal and stacked lockups with reverse versions). The header uses the official mark (`src/components/art/logo.tsx`, the same geometry as `Mel-Milap-icon.svg`) beside the wordmark. The footer uses the horizontal reverse lockup with its background removed. The favicon is the round icon and the Apple touch icon is the square icon.
+
 ## What was tested
 
 - **Automated:** type check, lint, 20 unit tests and a production build, all passing.
@@ -95,7 +99,7 @@ Publication rules:
 
 ## Needed before launch
 
-1. **Rakhi's portrait.** An approved photograph of Rakhi (`leadership.ts` → `portrait`, with `approved: true`, file in `public/people/`). A cut-paper monogram labelled "Illustration · portrait to come" stands in until then. Gopali's portrait is in place.
+1. **Portraits.** Both leadership portraits are in place (`public/people/`). Rakhi's photo is only 433×577 px, so it looks soft at full size on About; a higher-resolution original would help.
 2. **CBSE wording.** Confirm the exact wording of Rakhi's CBSE nomination, then set `confirmed: true`.
 3. **Founder note.** Rakhi needs to review the draft "From the Founder" note in `leadership.ts`, then set `approval: "approved"`.
 4. **Titles and governance.** Confirm the titles against approved governance documents. The October 2026 draft *Incorporation, Governance and Capital Brief* lists Rakhi as Executive Director and **Nidhi Kulshrestha** as the second director, and does not mention Gopali Verma or a "Managing Director" title. The site uses the titles exactly as briefed, but they should match the approved documents before launch.

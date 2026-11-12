@@ -55,6 +55,8 @@ export interface ImageAsset {
   illustrative?: boolean;
   caption?: string;
   credit?: string;
+  /** CSS object-position focal point used when the frame crops the image, e.g. "50% 20%". */
+  focus?: string;
 }
 
 export type CampaignStatus = "draft" | "planned" | "active" | "completed";

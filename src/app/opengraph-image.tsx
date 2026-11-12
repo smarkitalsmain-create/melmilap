@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { LogoMark } from "@/components/art/logo";
 import { site } from "@/content/site";
 
 export const alt = "Mel Milap Foundation: Good begins when we come together.";
@@ -14,7 +15,10 @@ export default function OpengraphImage() {
         <div style={{ position: "absolute", right: 60, bottom: 40, width: 200, height: 200, borderRadius: "200px 200px 0 0", background: "#18845F", display: "flex" }} />
         <div style={{ position: "absolute", right: 120, top: 20, width: 110, height: 110, borderRadius: 999, background: "#2546D8", display: "flex" }} />
         <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: 80, width: 760, color: "#2B1538" }}>
-          <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: "#C01E55" }}>{site.name}</div>
+          <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+            <LogoMark size={88} />
+            <div style={{ fontSize: 30, fontWeight: 700, letterSpacing: 4, textTransform: "uppercase", color: "#1E2A78" }}>{site.name}</div>
+          </div>
           <div style={{ fontSize: 86, fontWeight: 800, lineHeight: 1, marginTop: 24, letterSpacing: -3 }}>{site.tagline}</div>
         </div>
       </div>

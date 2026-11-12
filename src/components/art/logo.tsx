@@ -1,23 +1,41 @@
-/** Mel Milap mark: four cut-paper quarters meeting at the centre. */
-export function LogoMark({ className }: { className?: string }) {
+/**
+ * Official Mel Milap mark: two figures (a large and a small "m") standing
+ * together on a mango line. Geometry copied from public/brand/Mel-Milap-icon.svg.
+ * The full lockups (with the endorsement line) live in public/brand/.
+ */
+export const brandColours = {
+  navy: "#1E2A78",
+  pink: "#C8185A",
+  pinkOnDark: "#FF7AAB",
+  mango: "#F5A623",
+};
+
+export function LogoMark({ className, tone = "dark", size }: { className?: string; tone?: "dark" | "light"; size?: number }) {
+  const main = tone === "light" ? "#FFFFFF" : brandColours.navy;
+  const small = tone === "light" ? brandColours.pinkOnDark : brandColours.pink;
   return (
-    <svg viewBox="0 0 40 40" className={className} aria-hidden="true">
-      <path d="M18.5 18.5 L18.5 3 A15.5 15.5 0 0 0 3 18.5 Z" fill="#FFBD2E" />
-      <path d="M21.5 18.5 L37 18.5 A15.5 15.5 0 0 0 21.5 3 Z" fill="#D82A63" />
-      <path d="M21.5 21.5 L21.5 37 A15.5 15.5 0 0 0 37 21.5 Z" fill="#18845F" />
-      <path d="M18.5 21.5 L3 21.5 A15.5 15.5 0 0 0 18.5 37 Z" fill="#2546D8" />
-      <circle cx="20" cy="20" r="3.2" fill="currentColor" />
+    <svg viewBox="0 0 88 88" width={size} height={size} className={className} aria-hidden="true">
+      <g transform="translate(-7 -11)">
+        <g fill="none" strokeWidth={5} strokeLinecap="round" strokeLinejoin="round">
+          <path d="M12 76 V 54 Q 12 42 23 42 Q 34 42 34 54 V 76 M 34 54 Q 34 42 45 42 Q 56 42 56 54 V 76" stroke={main} />
+          <path d="M62 64 Q 62 56 69 56 Q 76 56 76 64 V 76 M 76 64 Q 76 56 83 56 Q 90 56 90 64 V 76" stroke={small} />
+        </g>
+        <circle cx={34} cy={30} r={5.5} fill={main} />
+        <circle cx={76} cy={46} r={4} fill={small} />
+        <path d="M12 84 H 90" stroke={brandColours.mango} strokeWidth={2.5} strokeLinecap="round" />
+      </g>
     </svg>
   );
 }
 
+/** Compact header lockup: official mark with the wordmark set in the site's display face. */
 export function Logo({ tone = "dark" }: { tone?: "dark" | "light" }) {
   return (
-    <span className={`inline-flex items-center gap-2.5 ${tone === "light" ? "text-cream" : "text-aubergine"}`}>
-      <LogoMark className="h-8 w-8 shrink-0 sm:h-9 sm:w-9 transition-transform duration-500 group-hover:rotate-90" />
+    <span className={`inline-flex items-center gap-2.5 ${tone === "light" ? "text-white" : "text-[#1E2A78]"}`}>
+      <LogoMark tone={tone} className="h-10 w-10 shrink-0 transition-transform duration-500 group-hover:-translate-y-0.5 sm:h-12 sm:w-12" />
       <span className="flex flex-col leading-none">
         <span className="whitespace-nowrap font-display text-[1.15rem] font-extrabold tracking-tight sm:text-[1.35rem]">Mel Milap</span>
-        <span className="text-[0.6rem] font-bold uppercase tracking-[0.2em] sm:text-[0.68rem] sm:tracking-[0.22em] opacity-80">Foundation</span>
+        <span className="mt-0.5 text-[0.6rem] font-bold uppercase tracking-[0.3em] opacity-75 sm:text-[0.68rem]">Foundation</span>
       </span>
     </span>
   );
