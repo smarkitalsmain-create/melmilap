@@ -72,7 +72,13 @@ export const gopali: Leader = {
     "Oversees day-to-day execution",
   ],
   reportsTo: "Managing Director & Executive Director",
-  portrait: null,
+  portrait: {
+    src: "/people/gopali-verma.jpg",
+    alt: "Portrait of Gopali Verma, smiling, in a dark blazer against a grey studio background.",
+    width: 1254,
+    height: 1254,
+    approved: true,
+  },
 };
 
 export const leaders = [rakhi, gopali];

@@ -95,7 +95,7 @@ Publication rules:
 
 ## Needed before launch
 
-1. **Portraits.** Approved photographs of Rakhi and Gopali (`leadership.ts` → `portrait`, with `approved: true`). Cut-paper monograms labelled "Illustration · portrait to come" stand in until then.
+1. **Rakhi's portrait.** An approved photograph of Rakhi (`leadership.ts` → `portrait`, with `approved: true`, file in `public/people/`). A cut-paper monogram labelled "Illustration · portrait to come" stands in until then. Gopali's portrait is in place.
 2. **CBSE wording.** Confirm the exact wording of Rakhi's CBSE nomination, then set `confirmed: true`.
 3. **Founder note.** Rakhi needs to review the draft "From the Founder" note in `leadership.ts`, then set `approval: "approved"`.
 4. **Titles and governance.** Confirm the titles against approved governance documents. The October 2026 draft *Incorporation, Governance and Capital Brief* lists Rakhi as Executive Director and **Nidhi Kulshrestha** as the second director, and does not mention Gopali Verma or a "Managing Director" title. The site uses the titles exactly as briefed, but they should match the approved documents before launch.
