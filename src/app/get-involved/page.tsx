@@ -29,8 +29,8 @@ export default function GetInvolvedPage() {
             <p className="mt-2 text-lg"><Link href="/donate" className="link-inline">Make a donation</Link> through our secure payment page.</p>
           ) : (
             <p className="mt-2 text-lg">
-              We aren’t accepting online donations yet. We’ll open them once our payment account is verified. Volunteering and partnerships
-              are the best ways to help right now.
+              Online donations through this website open once our payment account is verified. Until then, volunteering and partnerships
+              are the best ways to help.
             </p>
           )}
         </div>

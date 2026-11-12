@@ -4,9 +4,9 @@ import { notFound } from "next/navigation";
 import { CampaignCard } from "@/components/campaign/campaign-card";
 import { ArrowRight } from "@/components/ui/icons";
 import { EmptyState, PageHero, RouteCard, Section } from "@/components/ui/page-parts";
-import { causes, getCause, programmeStatusLabel } from "@/content/causes";
+import { causes, confirmedActivities, getCause } from "@/content/causes";
 import { isPreview } from "@/lib/config";
-import { listCampaigns } from "@/lib/content";
+import { formatDate, listCampaigns } from "@/lib/content";
 
 export function generateStaticParams() {
   return causes.map((c) => ({ cause: c.slug }));
@@ -26,10 +26,11 @@ export default async function CausePage({ params }: { params: Promise<{ cause: s
   if (!cause) notFound();
   const related = listCampaigns(isPreview()).filter((c) => c.category.kind === "cause" && c.category.cause === cause.slug);
   const others = causes.filter((c) => c.slug !== cause.slug);
+  const activities = confirmedActivities(cause);
 
   return (
     <>
-      <PageHero eyebrow={`Our work · ${programmeStatusLabel[cause.status]}`} title={cause.page.title} intro={cause.page.intro} tone={heroTone[cause.colour]} motif={cause.motif} />
+      <PageHero eyebrow="Our work" title={cause.page.title} intro={cause.page.intro} tone={heroTone[cause.colour]} motif={cause.motif} />
 
       <Section labelledBy="why-heading">
         <div className="grid gap-12 lg:grid-cols-[1.3fr_1fr] lg:gap-20">
@@ -39,13 +40,10 @@ export default async function CausePage({ params }: { params: Promise<{ cause: s
               {cause.page.whyItMatters.map((p) => <p key={p}>{p}</p>)}
             </div>
           </div>
-          <aside aria-labelledby="status-heading" className="self-start rounded-[2rem] bg-paper p-7">
-            <p className="eyebrow text-plum">Current status</p>
-            <h2 id="status-heading" className="mt-2 font-display text-2xl font-bold">{programmeStatusLabel[cause.status]}</h2>
-            <p className="mt-3">{cause.statusNote}</p>
-            <h3 className="mt-6 font-bold">Who we aim to support</h3>
-            <ul className="mt-3 space-y-2">
-              {cause.page.whoWeAimToSupport.map((w) => (
+          <aside aria-labelledby="support-heading" className="self-start rounded-[2rem] bg-paper p-7">
+            <h2 id="support-heading" className="font-display text-2xl font-bold">Who we support</h2>
+            <ul className="mt-4 space-y-2">
+              {cause.page.whoWeSupport.map((w) => (
                 <li key={w} className="flex gap-3"><span aria-hidden="true" className={`mt-2 h-2.5 w-2.5 shrink-0 rounded-full ${accent[cause.colour]}`} />{w}</li>
               ))}
             </ul>
@@ -53,27 +51,32 @@ export default async function CausePage({ params }: { params: Promise<{ cause: s
         </div>
       </Section>
 
-      <Section tone="aubergine" labelledBy="intend-heading">
-        <p className="eyebrow text-mango">What we intend to support</p>
-        <h2 id="intend-heading" className="display-md mt-3 max-w-3xl">Planned support, delivered with partners</h2>
-        <ul className="mt-10 grid gap-4 md:grid-cols-3">
-          {cause.intendedSupport.map((s, i) => (
-            <li key={s} data-reveal style={{ ["--i" as string]: i }} className="rounded-[1.75rem] bg-white/8 p-6 text-lg ring-1 ring-cream/15">
-              <span className="font-display text-4xl font-extrabold text-mango">0{i + 1}</span>
-              <p className="mt-3">{s}</p>
-            </li>
-          ))}
-        </ul>
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          <div>
-            <h3 className="font-display text-2xl font-bold">To begin: with partners</h3>
-            <p className="mt-3 text-lilac">{cause.page.partnerLedNow}</p>
-          </div>
-          <div>
-            <h3 className="font-display text-2xl font-bold">Later: our own programmes</h3>
-            <p className="mt-3 text-lilac">{cause.page.ownProgrammesLater}</p>
-          </div>
-        </div>
+      <Section tone="aubergine" labelledBy="activities-heading">
+        <p className="eyebrow text-mango">Activities</p>
+        <h2 id="activities-heading" className="display-md mt-3 max-w-3xl">What’s happening in {cause.name}</h2>
+        {activities.length ? (
+          <ol className="mt-10 space-y-6 border-l-4 border-mango pl-6">
+            {activities.map((a) => (
+              <li key={a.date + a.title}>
+                <p className="eyebrow flex flex-wrap items-center gap-3 text-mango">
+                  <time dateTime={a.date}>{formatDate(a.date)}</time>
+                  <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-cream">{a.status === "ongoing" ? "Ongoing" : "Completed"}</span>
+                </p>
+                <h3 className="mt-2 font-display text-2xl font-bold">{a.title}</h3>
+                <p className="mt-2 max-w-2xl text-lilac">{a.summary}</p>
+                <dl className="mt-3 grid gap-x-8 gap-y-1 text-sm sm:grid-cols-3">
+                  <div><dt className="font-bold">Delivered by</dt><dd className="text-lilac">{a.deliveredBy}</dd></div>
+                  <div><dt className="font-bold">Mel Milap’s role</dt><dd className="text-lilac">{a.melMilapRole}</dd></div>
+                  {a.location && <div><dt className="font-bold">Where</dt><dd className="text-lilac">{a.location}</dd></div>}
+                </dl>
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <p className="mt-6 max-w-2xl text-lg text-lilac">
+            Dated activity entries appear here as details are confirmed, each with who delivered the work and Mel Milap’s role.
+          </p>
+        )}
       </Section>
 
       <Section labelledBy="help-heading">
@@ -89,7 +92,7 @@ export default async function CausePage({ params }: { params: Promise<{ cause: s
             <ul className="grid gap-5 md:grid-cols-2">{related.map((c) => <li key={c.slug}><CampaignCard campaign={c} /></li>)}</ul>
           ) : (
             <EmptyState title="No campaigns yet">
-              <p>When a {cause.name.toLowerCase()} campaign is confirmed, it will appear here with its dates and how to take part.</p>
+              <p>When a {cause.name.toLowerCase()} campaign is confirmed, it appears here with its dates and how to take part.</p>
             </EmptyState>
           )}
         </div>

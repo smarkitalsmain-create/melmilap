@@ -71,7 +71,7 @@ export const legalDocuments: LegalDocument[] = [
       {
         heading: "Information on the website",
         paragraphs: [
-          "We work to keep information accurate and up to date. Programmes and campaigns are described according to their actual status: planned work is marked as planned, and figures appear only once verified.",
+          "We work to keep information accurate and up to date. Activities and campaigns are described according to their actual status, and figures appear only once verified.",
         ],
       },
       {

@@ -1,29 +1,22 @@
-import { operatingModel } from "@/content/operating-model";
+import { howWeWork } from "@/content/operating-model";
 
-export function OperatingModel() {
+const tones = ["bg-mango text-aubergine", "bg-hibiscus text-white", "bg-leaf text-white"];
+
+export function HowWeWork({ headingId }: { headingId: string }) {
   return (
-    <div>
-      <ol className="grid gap-4 lg:grid-cols-3">
-        {operatingModel.phases.map((p, i) => {
-          const isCurrent = i === operatingModel.current;
-          return (
-            <li
-              key={p.name}
-              data-reveal
-              style={{ ["--i" as string]: i }}
-              className={`relative rounded-[1.75rem] p-6 sm:p-7 ${isCurrent ? "bg-aubergine text-cream" : "border-2 border-aubergine/20 bg-cream"}`}
-            >
-              <p className={`eyebrow ${isCurrent ? "text-mango" : "text-plum"}`}>
-                Phase {i + 1}
-                {isCurrent ? " · where we start" : " · later"}
-              </p>
-              <h3 className="mt-2 font-display text-2xl font-bold">{p.name}</h3>
-              <p className={`mt-3 ${isCurrent ? "text-lilac" : "text-plum"}`}>{p.body}</p>
-            </li>
-          );
-        })}
-      </ol>
-      <p className="mt-6 max-w-3xl text-plum">{operatingModel.conditions}</p>
+    <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+      <div>
+        <h2 id={headingId} className="display-md">{howWeWork.heading}</h2>
+        <p className="mt-5 max-w-xl text-lg">{howWeWork.body}</p>
+      </div>
+      <ul className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+        {howWeWork.roles.map((r, i) => (
+          <li key={r.title} data-reveal style={{ ["--i" as string]: i }} className={`grain rounded-[1.75rem] p-6 ${tones[i]}`}>
+            <h3 className="font-display text-2xl font-bold">{r.title}</h3>
+            <p className="mt-2">{r.body}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

@@ -8,7 +8,7 @@ export const site = {
   shortName: "Mel Milap",
   tagline: "Good begins when we come together.",
   description:
-    "Mel Milap Foundation brings people together to support education, nutrition and animal welfare in India.",
+    "Mel Milap Foundation works across education, meals and nutrition, and animal welfare in India.",
   /** Hindi phrase and its meaning, used on About. */
   meaning: {
     phrase: "मेल-मिलाप",

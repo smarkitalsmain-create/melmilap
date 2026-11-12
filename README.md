@@ -30,10 +30,12 @@ All content is typed TypeScript under `src/content/`. Pages read it through `src
 | --- | --- |
 | `site.ts` | Name, tagline, navigation, **contact details**, **social links** and the Smarkitals endorsement |
 | `leadership.ts` | Rakhi and Gopali: titles, bios, portraits and the **founder note** (`approval`) |
-| `causes.ts` | The three focus areas, their status and cause-page copy |
+| `causes.ts` | The three focus areas, cause-page copy and each cause's **dated activities** (public only when `confirmed`) |
 | `campaigns.ts` | Campaigns, the **homepage spotlight** slug and its fallback, plus fictional fixtures for reviewing states |
-| `records.ts` | Programme updates, transparency documents, utilisation summaries and impact figures (all empty) |
-| `process.ts`, `operating-model.ts` | "How the work happens" steps and the phased operating model |
+| `records.ts` | Dated programme and fundraising updates, transparency documents, utilisation summaries and impact figures |
+| `fundraising.ts` | The homepage milestone (₹12.76 lakh, through 31 October 2026), the reported amount and the separate raised / used / outcomes figures |
+| `photos.ts` | Photo register for "In the field": source, permission, date, place, delivering organisation, Mel Milap's role, and cleared/held status |
+| `process.ts`, `operating-model.ts` | "How the work happens" steps, "How we work" and the "Looking ahead" note on About |
 | `legal.ts` | Privacy, Terms and Donation Policy (draft) |
 
 Publication rules:
@@ -64,6 +66,14 @@ Publication rules:
 - **`PAYMENT_PROVIDER=mock`** gives a local test checkout. It is refused in production.
 
 **Analytics** are not installed.
+
+## Fundraising and field photos
+
+**Fundraising milestone.** The homepage strip and the dated update say "₹12.76 lakh raised … over 45 days of operations through 31 October 2026". The reported amount, ₹12,76,343, is stored as `reportedAmountMinor` in `fundraising.ts`. Once it is reconciled, set `reconciled: true` and use the exact figure publicly. `collectedBy` stays null until you confirm which entity or partner collected the funds; no copy names a recipient or implies the money reached Mel Milap's own account. Funds used and programme outcomes show "Published once supporting records are available" until you fill them in.
+
+**In the field.** The gallery shows only photos with `status: "cleared"` and a `file` in `public/field/`. With none cleared, the section is hidden publicly and the paper burst stays on the campaign spotlight; once a photo is cleared, the burst moves to the gallery. In preview mode, held photos appear as labelled placeholders without loading the image. Held photos are deliberately not in the repository, because several show identifiable children.
+
+To clear a photo: confirm its source, publication permission (including guardians' consent for children, or use a crop that protects their identity), date, place, the organisation that delivered the work and Mel Milap's role. Then add the file to `public/field/`, fill those fields in `photos.ts` and set `status: "cleared"`.
 
 ## Leadership portraits
 
@@ -103,15 +113,31 @@ The official logo files are in `public/brand/` (icon, square and round icons, an
 
 ## Needed before launch
 
-1. **Portraits.** Both leadership portraits are in place. Rakhi's original is only 433×577 px, so her portrait is soft at large sizes; a higher-resolution original would help.
-2. **CBSE wording.** Confirm the exact wording of Rakhi's CBSE nomination, then set `confirmed: true`.
-3. **Founder note.** Rakhi needs to review the draft "From the Founder" note in `leadership.ts`, then set `approval: "approved"`.
-4. **Titles and governance.** Confirm the titles against approved governance documents. The October 2026 draft *Incorporation, Governance and Capital Brief* lists Rakhi as Executive Director and **Nidhi Kulshrestha** as the second director, and does not mention Gopali Verma or a "Managing Director" title. The site uses the titles exactly as briefed, but they should match the approved documents before launch.
-5. **Blanket drive.** Confirm the Senior Citizen Blanket Drive's status, dates, location, delivery partner and participation instructions, then change `status` from `draft`. The spotlight switches automatically.
-6. **Contact details.** An approved email, phone and any address, plus social profiles (`site.ts`).
-7. **Form destination.** `FORMS_WEBHOOK_URL`, for example NGOSutra, a CRM or Apps Script.
-8. **Payments.** Razorpay credentials and verification of the foundation's own bank account. Also tax-benefit and receipt details, published only once registrations are verified.
-9. **Legal copy.** Legal review of the Privacy, Terms and Donation Policy drafts.
-10. **Domain and indexing.** The production domain (`NEXT_PUBLIC_SITE_URL`), then `SITE_INDEXING=true` at launch.
-11. **Fourth area.** The planning documents also list startup incubation as an objective. The site covers only the three areas in the brief, so decide whether and when to add it.
-12. **Smarkitals wording.** Any statement about legal structure, registration or Smarkitals Group support needs verified wording. The site makes no such claims beyond the footer credit "A Smarkitals Group initiative".
+**Photos held for attribution or permission** (none are public yet; details in `src/content/photos.ts`):
+
+- **Classroom session** (Redmi phone photo, woman in yellow teaching): confirm whether it shows Rakhi, plus the date, place, organisation and consent. Students under 18 are identifiable.
+- **IDBI Bank computer donation**: the banner names IDBI Bank RPU-Pune and other charities; confirm Mel Milap's or Rakhi's role, the event date and permission.
+- **Rice distribution with register**: looks like professional agency photography; source unknown.
+- **Woman serving a schoolgirl a meal** (612×408): a stock-photo preview size; likely licensed stock, not Mel Milap activity.
+- **Women's group in a shed** (500×333): source unknown, and the activity doesn't match a focus area.
+- **Blanket collage of children**: identifiable children, source unknown. It must not be used as evidence for the Senior Citizen Blanket Drive.
+- **Sent in chat only, so no files were received**: food handout to children (masks), thali plates, community-kitchen cauldrons, two dog-care photos, tutor with a boy, teacher reading on a mat, and a park gathering. Each needs its file, source, date, place, delivering organisation and permission.
+
+**Fundraising details awaiting confirmation:**
+
+- Reconcile ₹12,76,343 before using that precision publicly.
+- Confirm which entity or partner collected the funds and Mel Milap's role in that, then credit them.
+- Funds used, cause-wise allocations and beneficiary figures: publish only with supporting records.
+
+**Other inputs:**
+
+1. **Rakhi's portrait.** Her photo is a 433×577 cut-out, so it looks soft at large sizes. `~/Downloads/IMG_7364.jpg` (3024×4032) appears to be the same photo at full resolution; it could be used for a much sharper portrait.
+2. **Activities.** Add dated, confirmed entries for each cause in `causes.ts`, each with who delivered it and Mel Milap's role. Specific services (vaccination, recurring meals, classroom sessions…) appear only this way.
+3. **CBSE wording.** Confirm the exact wording of Rakhi's CBSE nomination, then set `confirmed: true`.
+4. **Founder note.** Rakhi needs to review the draft "From the Founder" note in `leadership.ts`, then set `approval: "approved"`.
+5. **Titles and governance.** The site shows Rakhi as "Founder & Managing Director", per your instruction. The October 2026 draft governance brief lists her as Executive Director and Nidhi Kulshrestha as the second director, and doesn't mention Gopali Verma. Confirm the titles against approved documents.
+6. **Blanket drive.** Confirm its status, dates, location, delivery partner and participation instructions, then change `status` from `draft`.
+7. **Contact details, form destination and payments.** Approved contact details and social profiles (`site.ts`), `FORMS_WEBHOOK_URL`, and Razorpay credentials with the foundation's verified bank account.
+8. **Legal copy.** Legal review of the Privacy, Terms and Donation Policy drafts.
+9. **Domain and indexing.** Set `NEXT_PUBLIC_SITE_URL` in Vercel, then `SITE_INDEXING=true` at launch.
+10. **Smarkitals wording.** Any statement about legal structure or Smarkitals Group support needs verified wording; the site shows only "A Smarkitals Group initiative".

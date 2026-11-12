@@ -98,7 +98,7 @@ export const founderNote: FounderNote = {
   paragraphs: [
     "For years I have taught children who had every reason to give up and rarely did. Some were growing up in informal settlements. Some had parents who could not be there for them. What they needed was rarely complicated: a book of their own, a meal before class, an adult who came back the next day.",
     "Teaching showed me that no one changes a child’s life alone. It takes a teacher, a neighbour, a cook, a volunteer with an hour to spare. Mel milap means coming together, and that is the whole idea behind this foundation.",
-    "We are starting carefully, working with partners who know their communities, and we will tell you plainly what we do and what it costs. I want Mel Milap to be a place where people who care can find each other, and where children, families and even the dogs on our streets feel the difference.",
+    "We work with partners who know their communities, and we tell you plainly what we do and what it costs. I want Mel Milap to be a place where people who care can find each other, and where children, families and even the dogs on our streets feel the difference.",
   ],
   signOff: "Rakhi Kulshrestha",
 };

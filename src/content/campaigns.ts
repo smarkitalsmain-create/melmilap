@@ -107,14 +107,14 @@ export const spotlight = {
   /** Shown when the spotlight campaign is not yet published. */
   fallback: {
     eyebrow: "Campaign spotlight",
-    headline: "Our first campaigns are taking shape.",
-    body: "We are confirming partners, places and dates before we ask anyone to give. Until then, the best way to help is to lend your time, or your organisation’s reach.",
+    headline: "Our next campaign is being confirmed.",
+    body: "We’ll share its dates, location and how to take part here as soon as the details are confirmed. In the meantime, you can lend your time or your organisation’s reach.",
     actions: [
       { label: "Volunteer with us", href: "/get-involved/volunteer" },
       { label: "Partner with us", href: "/get-involved/delivery-partners" },
     ],
     panelTitle: "What you’ll find here",
     panelBody:
-      "When a campaign is confirmed, this space will show its dates, location and how to take part, plus verified progress once there is any to report.",
+      "For each campaign: its dates, location and how to take part, plus verified progress once there is any to report.",
   },
 };

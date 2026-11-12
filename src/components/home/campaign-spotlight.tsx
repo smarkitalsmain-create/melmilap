@@ -10,16 +10,23 @@ import type { spotlight } from "@/content/campaigns";
 interface Props {
   campaign: Campaign | null;
   fallback: typeof spotlight.fallback;
+  /** The burst belongs to the field gallery when it is shown. */
+  burst?: boolean;
+}
+
+function PlainFrame({ children }: { children: React.ReactNode }) {
+  return <div className="relative">{children}</div>;
 }
 
 /** Editorial campaign feature, driven entirely by content configuration. */
-export function CampaignSpotlight({ campaign, fallback }: Props) {
+export function CampaignSpotlight({ campaign, fallback, burst = true }: Props) {
+  const Frame = burst ? BurstFrame : PlainFrame;
   const progress = campaign ? progressForScene(campaign) : null;
 
   return (
     <section aria-labelledby="spotlight-heading" className="on-dark grain overflow-hidden bg-aubergine py-20 text-cream lg:py-28">
       <div className="container-site">
-        <BurstFrame>
+        <Frame>
           <div className="grid items-center gap-12 px-2 py-10 sm:px-8 lg:grid-cols-[1.25fr_1fr] lg:gap-16 lg:px-14 lg:py-16">
             <div>
               <p className="eyebrow flex flex-wrap items-center gap-3 text-mango">
@@ -92,7 +99,7 @@ export function CampaignSpotlight({ campaign, fallback }: Props) {
               </div>
             </div>
           </div>
-        </BurstFrame>
+        </Frame>
       </div>
     </section>
   );

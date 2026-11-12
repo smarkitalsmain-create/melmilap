@@ -12,7 +12,7 @@ export default function DeliveryPartnersPage() {
       kind="partner"
       eyebrow="Get involved · Delivery partners"
       title="You know the ground. Let’s work together."
-      intro="We will start by supporting defined projects through organisations already working in their communities."
+      intro="We work with local organisations and community teams already serving their communities, supporting defined projects across our three focus areas."
       tone="hibiscus"
       points={[
         { title: "An introduction", body: "Tell us about your work, the people you serve and where." },

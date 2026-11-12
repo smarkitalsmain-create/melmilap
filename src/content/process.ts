@@ -1,30 +1,27 @@
-/**
- * "How the work happens". Written in the future tense because these processes
- * are still being put in place. Switch to present tense once they are running.
- */
+/** "How the work happens": the four steps every activity follows. */
 export const processSteps = [
   {
     title: "Identify a need",
     short: "Start with a real, specific need.",
     detail:
-      "We will begin with a clearly defined need in a specific community, such as a group of children, a neighbourhood kitchen or a street’s dogs, assessed with the people closest to it.",
+      "We start with a clearly defined need in a specific community, such as a group of children, a neighbourhood kitchen or a street’s dogs, understood with the people closest to it.",
   },
   {
     title: "Work with a delivery partner",
     short: "Choose partners who know the ground.",
     detail:
-      "We will check each partner’s experience, capacity and financial practices, then agree the activities, budget, safeguarding and reporting in writing before any work begins.",
+      "We work with local organisations and community teams, agreeing what will be done, by whom and how it will be reported before the work begins.",
   },
   {
     title: "Deliver the activity",
-    short: "Partners deliver; we oversee.",
+    short: "Partners deliver; we support.",
     detail:
-      "Partners will run the work day to day. We will release funds in stages against agreed milestones, check delivery records and visit wherever we can.",
+      "Partners run the work day to day. Depending on the project, we raise funds, coordinate, or take part directly where our team is involved.",
   },
   {
     title: "Share what happened",
     short: "Report plainly, with dates.",
     detail:
-      "We will publish dated updates and utilisation summaries showing what was spent and what was delivered, including what didn’t go to plan.",
+      "We publish dated updates on our Transparency page, keeping funds raised, funds used and programme outcomes clearly separate.",
   },
 ];

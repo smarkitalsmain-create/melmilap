@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useRef } from "react";
 import { Motif } from "@/components/art/motifs";
 import { ArrowRight } from "@/components/ui/icons";
-import { programmeStatusLabel } from "@/content/causes";
 import type { Cause } from "@/content/types";
 
 const cardTone: Record<Cause["colour"], string> = {
@@ -111,11 +110,11 @@ export function CauseBuild({ causes }: { causes: Cause[] }) {
             <div>
               <p className="eyebrow text-hibiscus-ink">Three causes, one table</p>
               <h2 id="focus-heading" className="display-lg mt-3">
-                Where we focus
+                Our work
               </h2>
             </div>
             <p className="max-w-md text-lg text-plum">
-              All three are at the planning stage. We will start with partners who already know these communities.
+              We work across three focus areas, with local organisations and community teams.
             </p>
           </div>
 
@@ -130,33 +129,16 @@ export function CauseBuild({ causes }: { causes: Cause[] }) {
                   <div className="-mx-2 mb-2 flex h-40 items-center justify-center sm:h-44 lg:h-[clamp(7rem,17vh,10rem)]">
                     <Motif name={cause.motif} className="h-full w-auto max-w-full overflow-visible" />
                   </div>
-                  <p data-cause-text className="eyebrow opacity-90">
-                    {programmeStatusLabel[cause.status]}
-                  </p>
                   <h3 data-cause-text id={`cause-${cause.slug}`} className="display-md mt-1">
                     {cause.name}
                   </h3>
-                  <p data-cause-text className="mt-3 text-[1.05rem] leading-snug">
-                    {cause.oneLiner}
+                  <p data-cause-text className="mt-3 text-[1.1rem] leading-snug">
+                    {cause.summary}
                   </p>
-                  <div data-cause-text className="mt-4">
-                    <p className="text-sm font-bold">What we intend to support</p>
-                    <ul className="mt-2 space-y-1.5 text-[0.95rem] leading-snug">
-                      {cause.intendedSupport.map((s) => (
-                        <li key={s} className="flex gap-2">
-                          <span aria-hidden="true" className="mt-[0.45em] h-2 w-2 shrink-0 rounded-full bg-current" />
-                          {s}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div data-cause-text className="mt-auto flex flex-wrap items-center gap-x-5 gap-y-3 pt-6">
+                  <div data-cause-text className="mt-auto pt-7">
                     <Link href={`/our-work/${cause.slug}`} className={`btn ${linkTone[cause.colour]} !min-h-11 !py-2`}>
-                      Learn more<span className="sr-only"> about {cause.name}</span>
+                      Explore {cause.name}
                       <ArrowRight className="h-4 w-4" />
-                    </Link>
-                    <Link href={cause.page.waysToHelp[0].href} className="link-draw font-semibold">
-                      Take part<span className="sr-only"> in {cause.name}</span>
                     </Link>
                   </div>
                 </article>

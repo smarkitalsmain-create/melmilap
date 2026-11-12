@@ -14,8 +14,24 @@ export type CauseSlug = "education" | "meals-nutrition" | "animal-welfare";
 
 export type CauseColour = "mango" | "hibiscus" | "leaf";
 
-/** Lifecycle of a programme area. Describe each cause by its actual state. */
-export type ProgrammeStatus = "planned" | "piloting" | "active";
+/**
+ * A dated activity under a cause. Specific services (veterinary treatment,
+ * vaccination, recurring meals, classroom sessions...) appear only as
+ * confirmed activities, never as general claims about the cause.
+ */
+export interface Activity {
+  date: string;
+  title: string;
+  summary: string;
+  status: "ongoing" | "completed";
+  location?: string;
+  /** Organisation or team that delivered the work. */
+  deliveredBy: string;
+  /** What Mel Milap did: raised funds, coordinated, delivered directly... */
+  melMilapRole: string;
+  /** Only confirmed activities are public. */
+  confirmed: boolean;
+}
 
 export interface Cause {
   slug: CauseSlug;
@@ -23,22 +39,17 @@ export interface Cause {
   shortName: string;
   colour: CauseColour;
   motif: "book" | "bowl" | "paw";
-  /** One sentence used on the homepage feature. */
-  oneLiner: string;
-  /** The kind of work the foundation intends to support (homepage bullets). */
-  intendedSupport: string[];
-  status: ProgrammeStatus;
-  statusNote: string;
+  /** Short present-tense description used on cards. */
+  summary: string;
   page: {
     title: string;
     intro: string;
     whyItMatters: string[];
-    whoWeAimToSupport: string[];
-    partnerLedNow: string;
-    ownProgrammesLater: string;
+    whoWeSupport: string[];
     waysToHelp: { label: string; href: string; description: string }[];
     metaDescription: string;
   };
+  activities: Activity[];
 }
 
 /** Publication state for any record that can appear on the site. */
@@ -149,6 +160,7 @@ export interface ProgrammeUpdate {
   body: string[];
   cause?: CauseSlug;
   campaignSlug?: string;
+  kind?: "fundraising" | "programme";
   approval: Approval;
 }
 

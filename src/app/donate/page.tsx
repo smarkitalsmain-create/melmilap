@@ -17,8 +17,8 @@ export default async function DonatePage({ searchParams }: { searchParams: Promi
   if (!cfg.enabled) {
     return (
       <>
-        <PageHero eyebrow="Donate" tone="hibiscus" title="Online donations open soon."
-          intro="We’ll accept donations only once our own payment account is verified and we have a programme ready to fund. Until then, here are other ways to help." />
+        <PageHero eyebrow="Donate" tone="hibiscus" title="Online giving opens soon."
+          intro="Donations through this website open once our payment account is verified. Until then, here are other ways to help." />
         <Section>
           <div className="grid gap-5 lg:grid-cols-3">
             <RouteCard href="/get-involved/volunteer" tone="mango" title="Volunteer" body="Give time or a professional skill." />

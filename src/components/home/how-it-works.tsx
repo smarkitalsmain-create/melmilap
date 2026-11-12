@@ -17,12 +17,12 @@ export function HowItWorks() {
       <section aria-labelledby="how-heading" className="on-mango grain bg-mango py-20 text-aubergine lg:py-28">
         <div className="container-site grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20">
           <div className="lg:sticky lg:top-28 lg:self-start">
-            <p className="eyebrow">How the work will happen</p>
+            <p className="eyebrow">How the work happens</p>
             <h2 id="how-heading" className="display-lg mt-3">
               Four steps, done carefully.
             </h2>
             <p className="mt-6 max-w-md text-lg">
-              We are putting these steps in place now. Every campaign will follow them, and you will be able to see each one.
+              Every activity we support follows these steps, and you can see each one.
             </p>
             <ol aria-hidden="true" className="mt-10 hidden items-center gap-3 lg:flex">
               {processSteps.map((s, i) => (

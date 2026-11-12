@@ -38,8 +38,8 @@ export default function CampaignsPage() {
             ))}
           </div>
         ) : (
-          <EmptyState title="Our first campaign is being confirmed">
-            <p>We’ll publish it here once its dates, location and participation details are settled. Until then, you can help us get ready.</p>
+          <EmptyState title="Our next campaign is being confirmed">
+            <p>It appears here once its dates, location and participation details are settled. In the meantime, you can volunteer or partner with us.</p>
           </EmptyState>
         )}
         <div className="mt-12 grid gap-5 md:grid-cols-2">

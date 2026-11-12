@@ -48,7 +48,11 @@ function BitShape({ b }: { b: Bit }) {
   }
 }
 
-export function BurstFrame({ children }: { children: React.ReactNode }) {
+/** Swap the frame's colours to suit the section background. */
+const defaultPalette = ["#FFBD2E", "#D82A63", "#FFF8ED"];
+
+export function BurstFrame({ children, palette = defaultPalette }: { children: React.ReactNode; palette?: string[] }) {
+  const recolour = (c: string) => palette[defaultPalette.indexOf(c)] ?? c;
   const { ref, pending } = useStagedEntrance<HTMLDivElement>();
 
   return (
@@ -69,7 +73,7 @@ export function BurstFrame({ children }: { children: React.ReactNode }) {
               } as CSSProperties
             }
           >
-            <BitShape b={b} />
+            <BitShape b={{ ...b, colour: recolour(b.colour) }} />
           </span>
         ))}
       </div>

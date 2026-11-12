@@ -285,3 +285,11 @@
 @media (prefers-reduced-motion: no-preference) {
   .navigated .route-enter { animation: route-enter 0.45s var(--ease-out-soft) backwards; }
 }
+
+/* Milestone strip: one quick entrance that only moves it, so the figure is visible from the first paint. */
+@keyframes milestone-enter {
+  from { transform: translateY(14px); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .milestone-enter { animation: milestone-enter 0.5s var(--ease-out-soft) both; }
+}

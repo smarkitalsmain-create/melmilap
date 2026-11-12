@@ -1,22 +1,21 @@
 /**
- * The phased operating model. Update `current` as the foundation moves through phases.
+ * "How we work". Individual activities name who delivered the work and
+ * Mel Milap's role (see Activity in causes.ts).
  */
-export const operatingModel = {
-  current: 0,
-  phases: [
-    {
-      name: "Partner-led launch",
-      body: "We support defined projects through verified NGOs, community organisations and specialist institutions. Partners deliver day to day; we assess needs, approve budgets, monitor spending and verify delivery.",
-    },
-    {
-      name: "Combined delivery",
-      body: "Partner-led projects continue while we introduce selected programmes of our own, with our own coordinators and monitoring.",
-    },
-    {
-      name: "Established model",
-      body: "We run programmes directly where we have the capacity, and keep partners wherever they bring stronger local access or specialist skills.",
-    },
+export const howWeWork = {
+  heading: "How we work",
+  body:
+    "We work with local organisations and community teams to support activities across our three focus areas. Our role varies by project, from raising funds and coordinating with delivery partners to supporting activities directly where our team is involved.",
+  roles: [
+    { title: "Raising funds", body: "Bringing people and organisations together to fund the work." },
+    { title: "Coordinating partners", body: "Working with local organisations and community teams who deliver on the ground." },
+    { title: "Supporting directly", body: "Taking part in activities where our own team is involved." },
   ],
-  conditions:
-    "We will only run our own programmes once we have an approved plan, committed funding, responsible staff, suitable facilities and working financial and monitoring controls.",
+};
+
+/** Future plans, explained in context lower on the About page. */
+export const lookingAhead = {
+  heading: "Looking ahead",
+  body:
+    "As our capacity grows, we expect to run more activities ourselves, while continuing to work with partners wherever they bring stronger local access or specialist skills. We take on direct delivery only where we have the people, funding and controls to do it well.",
 };

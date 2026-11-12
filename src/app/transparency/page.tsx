@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { EmptyState, PageHero, Section } from "@/components/ui/page-parts";
+import { financialSummary } from "@/content/fundraising";
 import { formatDate, formatINR, listDocuments, listUpdates, listUtilisation } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -8,11 +9,11 @@ export const metadata: Metadata = {
 };
 
 const commitments = [
-  "A dated update for every programme activity",
-  "A utilisation summary for every campaign: what was received, what was spent and on what",
+  "A dated update for every activity",
+  "Funds raised, funds used and programme outcomes, each reported under its own label",
+  "Expenditure, cause-wise allocations and beneficiary figures once supporting records are available",
   "Registration and governance documents, once approved",
-  "Annual reports and audited accounts as they become due",
-];
+]
 
 export default function TransparencyPage() {
   const docs = listDocuments();
@@ -24,10 +25,32 @@ export default function TransparencyPage() {
         eyebrow="Transparency"
         tone="aubergine"
         title="Where it goes, in plain sight."
-        intro="We’re a new foundation and haven’t delivered programmes yet, so this page is mostly empty for now. That’s deliberate: we only publish what’s approved and verified."
+        intro="Dated updates, with funds raised, funds used and programme outcomes reported separately. We publish figures once they are supported by records."
       />
+
+      <Section tone="cobalt" labelledBy="figures-heading">
+        <h2 id="figures-heading" className="display-md">At a glance</h2>
+        <dl className="mt-8 grid gap-4 md:grid-cols-3">
+          {[financialSummary.fundsRaised, financialSummary.fundsUsed, financialSummary.outcomes].map((f) => (
+            <div key={f.label} className="rounded-[1.75rem] bg-white/10 p-6">
+              <dt className="eyebrow text-mango">{f.label}</dt>
+              <dd className="mt-3">
+                {f.value ? (
+                  <>
+                    <span className="block font-display text-3xl font-bold">{f.value}</span>
+                    {f.asOf && <span className="mt-1 block text-sm">As of {formatDate(f.asOf)}</span>}
+                  </>
+                ) : (
+                  <span className="block text-lg">Published once supporting records are available.</span>
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Section>
+
       <Section labelledBy="commit-heading">
-        <h2 id="commit-heading" className="display-md">What we will publish</h2>
+        <h2 id="commit-heading" className="display-md">What we publish</h2>
         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
           {commitments.map((c) => <li key={c} className="rounded-2xl bg-paper p-5 text-lg">{c}</li>)}
         </ul>
@@ -40,14 +63,14 @@ export default function TransparencyPage() {
             <ol className="space-y-8">
               {updates.map((u) => (
                 <li key={u.slug} id={u.slug} className="scroll-mt-24">
-                  <time dateTime={u.date} className="eyebrow text-plum">{formatDate(u.date)}</time>
+                  <p className="eyebrow text-plum">{u.kind === "fundraising" ? "Fundraising" : <time dateTime={u.date}>{formatDate(u.date)}</time>}</p>
                   <h3 className="mt-1 font-display text-2xl font-bold">{u.title}</h3>
                   <div className="prose-reading mt-2">{u.body.map((p) => <p key={p}>{p}</p>)}</div>
                 </li>
               ))}
             </ol>
           ) : (
-            <EmptyState title="No updates yet"><p>Our first update will appear here, dated, when programme work begins.</p></EmptyState>
+            <EmptyState title="Updates on their way"><p>Dated updates appear here as they are published.</p></EmptyState>
           )}
         </div>
       </Section>
@@ -73,7 +96,7 @@ export default function TransparencyPage() {
               </table>
             </div>
           ) : (
-            <EmptyState title="No funds received for programmes yet"><p>Summaries will appear after each campaign, showing what was received and how it was used.</p></EmptyState>
+            <EmptyState title="Utilisation summaries to come"><p>Summaries of how funds were used appear here once supporting records are available.</p></EmptyState>
           )}
         </div>
       </Section>
@@ -88,7 +111,7 @@ export default function TransparencyPage() {
               ))}
             </ul>
           ) : (
-            <EmptyState title="Documents to come"><p>Approved registration, governance and policy documents will be listed here.</p></EmptyState>
+            <EmptyState title="Documents to come"><p>Approved registration, governance and policy documents are listed here once available.</p></EmptyState>
           )}
         </div>
       </Section>

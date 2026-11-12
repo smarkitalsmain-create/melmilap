@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { campaignFixtures, campaigns } from "@/content/campaigns";
-import { causes } from "@/content/causes";
+import { causes, confirmedActivities } from "@/content/causes";
 import { gopali, rakhi } from "@/content/leadership";
 import { legalDocuments } from "@/content/legal";
 import { findCampaign, getFounderNote, getSpotlight, listCampaigns, verifiedProgress, visibleBio } from "@/lib/content";
@@ -53,9 +53,10 @@ describe("leadership", () => {
 });
 
 describe("causes and legal", () => {
-  it("describes every cause honestly as planned until a programme runs", () => {
+  it("lists the three causes and publishes only confirmed activities", () => {
     expect(causes.map((c) => c.slug)).toEqual(["education", "meals-nutrition", "animal-welfare"]);
-    causes.forEach((c) => expect(c.status).toBe("planned"));
+    const withDraft = { ...causes[0], activities: [{ date: "2026-10-01", title: "x", summary: "x", status: "ongoing" as const, deliveredBy: "x", melMilapRole: "x", confirmed: false }] };
+    expect(confirmedActivities(withDraft)).toHaveLength(0);
   });
 
   it("has all three legal documents", () => {
