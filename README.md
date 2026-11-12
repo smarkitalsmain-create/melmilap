@@ -33,7 +33,7 @@ All content is typed TypeScript under `src/content/`. Pages read it through `src
 | `causes.ts` | The three focus areas, cause-page copy and each cause's **dated activities** (public only when `confirmed`) |
 | `campaigns.ts` | Campaigns, the **homepage spotlight** slug and its fallback, plus fictional fixtures for reviewing states |
 | `records.ts` | Dated programme and fundraising updates, transparency documents, utilisation summaries and impact figures |
-| `fundraising.ts` | The homepage milestone (₹12.76 lakh, through 31 October 2026), the reported amount and the separate raised / used / outcomes figures |
+| `fundraising.ts` | The fundraising figure (₹12.76 lakh through 31 October 2026) and the reported amount awaiting reconciliation |
 | `photos.ts` | Photo register for "In the field": source, permission, date, place, delivering organisation, Mel Milap's role, and cleared/held status |
 | `process.ts`, `operating-model.ts` | "How the work happens" steps, "How we work" and the "Looking ahead" note on About |
 | `legal.ts` | Privacy, Terms and Donation Policy (draft) |
@@ -69,7 +69,7 @@ Publication rules:
 
 ## Fundraising and field photos
 
-**Fundraising milestone.** The homepage strip and the dated update say "₹12.76 lakh raised … over 45 days of operations through 31 October 2026". The reported amount, ₹12,76,343, is stored as `reportedAmountMinor` in `fundraising.ts`. Once it is reconciled, set `reconciled: true` and use the exact figure publicly. `collectedBy` stays null until you confirm which entity or partner collected the funds; no copy names a recipient or implies the money reached Mel Milap's own account. Funds used and programme outcomes show "Published once supporting records are available" until you fill them in.
+**Fundraising.** The ₹12.76 lakh figure appears only in the dated "Fundraising update · 31 October 2026" on the Transparency page, not on the homepage. The reported amount, ₹12,76,343, is stored in `src/content/fundraising.ts`; once it's reconciled, set `reconciled: true` and use the exact figure. `collectedBy` stays null until you confirm which entity collected the funds. Funds used and programme outcomes are not shown anywhere on the site for now, and the utilisation section appears only once a summary is added to `records.ts`.
 
 **In the field.** The gallery shows only photos with `status: "cleared"` and a `file` in `public/field/`. When no photo is cleared the section is hidden and the paper burst stays on the campaign spotlight; with cleared photos, the burst moves to the gallery. In preview mode, held photos appear as labelled placeholders without loading the image. Held photos are deliberately not in the repository, because several show identifiable children.
 
@@ -124,7 +124,6 @@ Held (details in `photos.ts`):
 
 - Reconcile ₹12,76,343 before using that precision publicly.
 - Confirm which entity or partner collected the funds and Mel Milap's role in that, then credit them.
-- Funds used, cause-wise allocations and beneficiary figures: publish only with supporting records.
 
 **Other inputs:**
 

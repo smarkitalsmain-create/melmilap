@@ -1,6 +1,6 @@
 /**
- * Fundraising figures. Funds raised, funds used and programme outcomes are
- * kept separate; publish used/outcome figures only with supporting records.
+ * Fundraising figure, shown only in the dated update on the Transparency page.
+ * Funds used and programme outcomes are not published for now.
  */
 export const fundraisingMilestone = {
   /** Public, rounded figure (the amount was supplied as approximate). */
@@ -18,18 +18,4 @@ export const fundraisingMilestone = {
    */
   collectedBy: null as string | null,
   updateHref: "/transparency#fundraising-update-2026-10-31",
-};
-
-export interface LabelledFigure {
-  label: string;
-  /** null = awaiting supporting records. */
-  value: string | null;
-  asOf?: string;
-}
-
-/** Separate labelled figures for Transparency. */
-export const financialSummary: Record<"fundsRaised" | "fundsUsed" | "outcomes", LabelledFigure> = {
-  fundsRaised: { label: "Funds raised", value: "Approximately ₹12.76 lakh", asOf: "2026-10-31" },
-  fundsUsed: { label: "Funds used", value: null },
-  outcomes: { label: "Programme outcomes", value: null },
 };

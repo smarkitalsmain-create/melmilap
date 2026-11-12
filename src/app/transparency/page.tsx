@@ -1,17 +1,14 @@
 import type { Metadata } from "next";
 import { EmptyState, PageHero, Section } from "@/components/ui/page-parts";
-import { financialSummary } from "@/content/fundraising";
 import { formatDate, formatINR, listDocuments, listUpdates, listUtilisation } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Transparency",
-  description: "Approved documents, dated programme updates and utilisation summaries from Mel Milap Foundation.",
+  description: "Dated updates and approved documents from Mel Milap Foundation.",
 };
 
 const commitments = [
   "A dated update for every activity",
-  "Funds raised, funds used and programme outcomes, each reported under its own label",
-  "Expenditure, cause-wise allocations and beneficiary figures once supporting records are available",
   "Registration and governance documents, once approved",
 ]
 
@@ -25,29 +22,8 @@ export default function TransparencyPage() {
         eyebrow="Transparency"
         tone="aubergine"
         title="Where it goes, in plain sight."
-        intro="Dated updates, with funds raised, funds used and programme outcomes reported separately. We publish figures once they are supported by records."
+        intro="Dated updates and approved documents, in one place. We publish figures only once they are supported by records."
       />
-
-      <Section tone="cobalt" labelledBy="figures-heading">
-        <h2 id="figures-heading" className="display-md">At a glance</h2>
-        <dl className="mt-8 grid gap-4 md:grid-cols-3">
-          {[financialSummary.fundsRaised, financialSummary.fundsUsed, financialSummary.outcomes].map((f) => (
-            <div key={f.label} className="rounded-[1.75rem] bg-white/10 p-6">
-              <dt className="eyebrow text-mango">{f.label}</dt>
-              <dd className="mt-3">
-                {f.value ? (
-                  <>
-                    <span className="block font-display text-3xl font-bold">{f.value}</span>
-                    {f.asOf && <span className="mt-1 block text-sm">As of {formatDate(f.asOf)}</span>}
-                  </>
-                ) : (
-                  <span className="block text-lg">Published once supporting records are available.</span>
-                )}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </Section>
 
       <Section labelledBy="commit-heading">
         <h2 id="commit-heading" className="display-md">What we publish</h2>
@@ -75,10 +51,10 @@ export default function TransparencyPage() {
         </div>
       </Section>
 
+      {utilisation.length > 0 && (
       <Section labelledBy="util-heading" className="border-t border-aubergine/10">
         <h2 id="util-heading" className="display-md">Utilisation summaries</h2>
         <div className="mt-6">
-          {utilisation.length ? (
             <div className="overflow-x-auto">
               <table className="w-full min-w-[36rem] text-left">
                 <caption className="sr-only">Funds received and utilised by period</caption>
@@ -95,11 +71,9 @@ export default function TransparencyPage() {
                 </tbody>
               </table>
             </div>
-          ) : (
-            <EmptyState title="Utilisation summaries to come"><p>Summaries of how funds were used appear here once supporting records are available.</p></EmptyState>
-          )}
         </div>
       </Section>
+      )}
 
       <Section labelledBy="docs-heading" className="border-t border-aubergine/10">
         <h2 id="docs-heading" className="display-md">Documents</h2>

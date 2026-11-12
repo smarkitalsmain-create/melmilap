@@ -5,14 +5,13 @@ import { Portrait } from "@/components/ui/portrait";
 import { gopali, rakhi } from "@/content/leadership";
 import type { ProgrammeUpdate } from "@/content/types";
 import { formatDate } from "@/lib/content";
-import { fundraisingMilestone } from "@/content/fundraising";
 import { GatherFinale } from "./gather-finale";
 import { LeaderCard } from "./leader-card";
 
 export function Hero() {
   return (
     <section aria-labelledby="hero-heading" className="grain relative overflow-hidden bg-cream">
-      <div className="container-site grid items-center gap-8 pb-14 pt-10 sm:pt-14 lg:min-h-[calc(100dvh-16rem)] lg:grid-cols-[1.08fr_1fr] lg:gap-4 lg:py-6">
+      <div className="container-site grid items-center gap-8 pb-14 pt-10 sm:pt-14 lg:min-h-[calc(100dvh-5rem)] lg:grid-cols-[1.08fr_1fr] lg:gap-4 lg:py-10">
         <div className="relative z-10">
           <p className="eyebrow inline-flex items-center gap-2 text-hibiscus-ink">
             <span aria-hidden="true" className="h-2.5 w-2.5 rounded-full bg-hibiscus" />
@@ -41,34 +40,8 @@ export function Hero() {
           </div>
         </div>
         <div className="relative -mx-4 sm:mx-0 lg:-mr-10 lg:-mt-6 xl:-mr-20">
-          <HeroArt className="mx-auto block aspect-[660/640] w-full max-w-[34rem] lg:max-h-[calc(100dvh-17rem)] lg:max-w-none" />
+          <HeroArt className="mx-auto block aspect-[660/640] w-full max-w-[34rem] lg:max-w-none" />
         </div>
-      </div>
-    </section>
-  );
-}
-
-/**
- * Fundraising milestone, directly below the hero. Server-rendered and never
- * hidden: the optional entrance only moves it, so the figure is always visible.
- */
-export function MilestoneStrip() {
-  const m = fundraisingMilestone;
-  return (
-    <section aria-labelledby="milestone-figure" className="on-dark grain overflow-hidden bg-aubergine text-cream">
-      <div className="container-site milestone-enter flex flex-col gap-4 py-10 sm:py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-        <div className="flex flex-col gap-2 sm:flex-row sm:items-baseline sm:gap-5">
-          <p id="milestone-figure" className="display-lg whitespace-nowrap text-mango">
-            {m.figure} <span className="text-cream">{m.label}</span>
-          </p>
-          <p className="text-lg font-semibold sm:text-xl">
-            <time dateTime={m.asOf}>{m.period}</time>
-          </p>
-        </div>
-        <Link href={m.updateHref} className="group inline-flex shrink-0 items-center gap-2 self-start whitespace-nowrap text-lg font-bold text-mango lg:self-auto">
-          <span className="link-draw">Read the fundraising update</span>
-          <ArrowRight className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" />
-        </Link>
       </div>
     </section>
   );
@@ -92,7 +65,7 @@ export function LeadershipIntro() {
               key={leader.slug}
               leader={leader}
               eyebrow={eyebrow}
-              portrait={<Portrait leader={leader} sizes="(min-width: 768px) 45vw, 100vw" className="aspect-[4/3] w-full [&_figcaption]:hidden" />}
+              portrait={<Portrait leader={leader} sizes="10rem" className="aspect-[4/5] w-24 rounded-[1.1rem] sm:w-32 [&_figcaption]:hidden" />}
             />
           ))}
         </div>
@@ -101,7 +74,9 @@ export function LeadershipIntro() {
   );
 }
 
-export function TrustSection({ updates }: { updates: ProgrammeUpdate[] }) {
+export function TrustSection({ updates: all }: { updates: ProgrammeUpdate[] }) {
+  // Fundraising figures are kept to the Transparency page.
+  const updates = all.filter((u) => u.kind !== "fundraising");
   return (
     <section aria-labelledby="trust-heading" className="on-dark grain bg-cobalt py-20 text-white lg:py-28">
       <div className="container-site grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-20">
@@ -111,8 +86,7 @@ export function TrustSection({ updates }: { updates: ProgrammeUpdate[] }) {
             You’ll see where it goes.
           </h2>
           <p className="mt-6 max-w-md text-lg">
-            Every update carries a date. Funds raised, funds used and programme outcomes are reported separately on our
-            Transparency page.
+            Every update carries a date, and our Transparency page brings them together in one place.
           </p>
           <Link href="/transparency" className="btn btn-cream mt-8">
             Visit Transparency <ArrowRight />
@@ -124,7 +98,7 @@ export function TrustSection({ updates }: { updates: ProgrammeUpdate[] }) {
               {updates.slice(0, 3).map((u) => (
                 <li key={u.slug} className="rounded-[1.5rem] bg-white/10 p-6">
                   <p className="eyebrow text-mango">
-                    {u.kind === "fundraising" ? "Fundraising" : <time dateTime={u.date}>{formatDate(u.date)}</time>}
+                    <time dateTime={u.date}>{formatDate(u.date)}</time>
                   </p>
                   <h3 className="mt-2 font-display text-2xl font-bold">{u.title}</h3>
                   <p className="mt-2">{u.summary}</p>
@@ -136,8 +110,8 @@ export function TrustSection({ updates }: { updates: ProgrammeUpdate[] }) {
             </ul>
           ) : (
             <div className="rounded-[2rem] border-2 border-dashed border-white/50 p-7 sm:p-9">
-              <h3 className="font-display text-2xl font-bold">Updates are on their way</h3>
-              <p className="mt-3">Dated updates appear here as they are published.</p>
+              <h3 className="font-display text-2xl font-bold">Read our latest updates</h3>
+              <p className="mt-3">Dated updates are published on our Transparency page.</p>
             </div>
           )}
         </div>

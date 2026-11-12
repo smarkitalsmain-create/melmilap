@@ -21,13 +21,17 @@ export function LeaderCard({ leader, eyebrow, portrait }: { leader: Leader; eyeb
 
   return (
     <article aria-labelledby={`home-${leader.slug}`} className={`flex h-full flex-col overflow-hidden rounded-[2rem] ${t.card}`}>
-      {portrait}
       <div className="flex flex-1 flex-col p-6 sm:p-8">
-        <p className={`eyebrow ${t.eyebrow}`}>{eyebrow}</p>
-        <h3 id={`home-${leader.slug}`} className="display-md mt-2">
-          {leader.name}
-        </h3>
-        <p className={`mt-2 font-semibold ${t.muted}`}>{leader.title}</p>
+        <div className="flex items-center gap-5">
+          <div className="shrink-0">{portrait}</div>
+          <div>
+            <p className={`eyebrow ${t.eyebrow}`}>{eyebrow}</p>
+            <h3 id={`home-${leader.slug}`} className="mt-2 font-display text-[1.6rem] font-bold leading-tight sm:text-3xl">
+              {leader.name}
+            </h3>
+            <p className={`mt-2 font-semibold ${t.muted}`}>{leader.title}</p>
+          </div>
+        </div>
 
         <button
           type="button"

@@ -22,6 +22,6 @@ export const processSteps = [
     title: "Share what happened",
     short: "Report plainly, with dates.",
     detail:
-      "We publish dated updates on our Transparency page, keeping funds raised, funds used and programme outcomes clearly separate.",
+      "We publish dated updates on our Transparency page, sharing figures only when records support them.",
   },
 ];

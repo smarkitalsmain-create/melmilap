@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const values = [
   { title: "Dignity", body: "People we support are partners in the work, never props in a story." },
   { title: "Inclusion", body: "We go where support is thinnest and listen to the people who live there." },
-  { title: "Care with money", body: "We keep funds raised, funds used and outcomes clearly separate." },
+  { title: "Care with money", body: "We report with dates and publish figures only when records support them." },
   { title: "Plain reporting", body: "We publish what we did, with dates, and what didn’t go to plan." },
 ];
 
@@ -35,15 +35,19 @@ function LeaderProfile({ leader, eyebrow, preview }: { leader: Leader; eyebrow: 
   const t = profileTone[leader.role];
   return (
     <article id={leader.slug} aria-labelledby={`${leader.slug}-name`} className={`flex scroll-mt-24 flex-col overflow-hidden rounded-[2.5rem] ${t.card}`}>
-      <div data-reveal="mask">
-        <Portrait leader={leader} sizes="(min-width: 1024px) 45vw, 100vw" className="aspect-[4/5] w-full sm:aspect-[4/3]" />
-      </div>
       <div className="flex flex-1 flex-col p-7 sm:p-10">
-        <p className={`eyebrow ${t.accent}`}>{eyebrow}</p>
-        <h3 id={`${leader.slug}-name`} className="display-md mt-2">
-          {leader.name}
-        </h3>
-        <p className={`mt-2 text-lg font-semibold ${t.accent}`}>{leader.title}</p>
+        <div className="flex items-center gap-5 sm:gap-6">
+          <div data-reveal="mask" className="shrink-0">
+            <Portrait leader={leader} sizes="11rem" className="aspect-[4/5] w-28 rounded-[1.25rem] sm:w-36" />
+          </div>
+          <div>
+            <p className={`eyebrow ${t.accent}`}>{eyebrow}</p>
+            <h3 id={`${leader.slug}-name`} className="mt-2 font-display text-[1.65rem] font-bold leading-tight sm:text-3xl">
+              {leader.name}
+            </h3>
+            <p className={`mt-2 font-semibold ${t.accent}`}>{leader.title}</p>
+          </div>
+        </div>
         <div className={`prose-reading mt-6 ${t.muted}`}>
           {visibleBio(leader, preview).map((p) => (
             <p key={p.text}>

@@ -133,7 +133,7 @@ export const legalDocuments: LegalDocument[] = [
       {
         heading: "Reporting",
         paragraphs: [
-          "We publish programme updates and utilisation summaries on our Transparency page so you can see how funds were used.",
+          "We publish dated updates on our Transparency page.",
         ],
       },
     ],
